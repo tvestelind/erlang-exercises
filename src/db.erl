@@ -5,15 +5,7 @@ new() -> [].
 
 destroy(_) -> ok.
 
-% The reason I did it like this is because each key must be unique.
-% Thus, if the key already exists then we delete it and re-add it with the the
-% new element.
-write(Key, Elem, Db) -> 
-    case find(Key, Db) of
-        {ok, _} -> [{Key, Elem} | delete(Key,Db)];
-        {error, instance} -> [{Key, Elem} | Db]
-    end.
-
+write(Key, Elem, Db) -> [{Key, Elem} | delete(Key, Db)].
 
 delete(Key, Db) -> del(Key, [], Db).
 
