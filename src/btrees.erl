@@ -1,5 +1,6 @@
 -module(btrees).
--export([sum/1, max/1, min/1, is_ordered/1, insert/2]).
+-export([sum/1, max/1, min/1, is_ordered/1, insert/2, gentree/1, test_list/0]).
+-import(lists,[]).
 -include("btrees.hrl").
 
 sum(#btree{left = empty, right = empty, value = V}) -> V;
@@ -26,6 +27,9 @@ insert(E, empty) -> E;
 insert(#btree{value = Vnew} = E, #btree{left = L, value = V} = T) when Vnew =< V -> T#btree{left = insert(E, L)};
 insert(#btree{value = Vnew} = E, #btree{right = R, value = V} = T) when V < Vnew -> T#btree{right = insert(E, R)}.
                                                                         
+test_list() -> [#btree{value=1}, #btree{value=2}, #btree{value=4}, #btree{value=3}, #btree{value=2}, #btree{value=28}, #btree{value=100}, #btree{value=-1}, #btree{value=-100}, #btree{value=2001}, #btree{value=162000}, #btree{value=17}, #btree{value=29}, #btree{value=18}, #btree{value=3}, #btree{value=6}, #btree{value=3}, #btree{value=-100}].
+gentree(List) -> lists:foldr(fun(E, Acc) -> insert(E, Acc) end, empty, List). 
+
 % Internal functions
 max3(A,B,C) -> max(A, max(B, C)).
 min3(A,B,C) -> min(A, min(B, C)).
