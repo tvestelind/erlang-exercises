@@ -1,1 +1,1 @@
--record(btree, {node1 = empty, node2 = empty, value=0}).
+-record(btree, {left = empty, right = empty, value=0}).
