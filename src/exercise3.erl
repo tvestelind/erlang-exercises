@@ -14,8 +14,8 @@ create(N) -> lists:seq(1,N).
 reverse_create(N) -> lists:reverse(create(N)).
 
 % Exercise 3
-print(all, N) -> lists:map(fun printa/1, create(N));
-print(even, N) -> lists:map(fun printa/1, lists:filter(fun(A) -> (A rem 2) =:= 0 end, create(N))).
+print(all, N) -> lists:foreach(fun printa/1, create(N));
+print(even, N) -> lists:foreach(fun printa/1, lists:filter(fun(A) -> (A rem 2) =:= 0 end, create(N))).
 
 printa(N) -> io:format("Number: ~p~n",[N]).
 
