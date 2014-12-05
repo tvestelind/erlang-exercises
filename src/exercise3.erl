@@ -1,5 +1,5 @@
 -module(exercise3).
--export([sum/1,sum/2, create/1, reverse_create/1,print/2,filter/2,reverse/1,concatenate/1,flatten/1]).
+-export([sum/1,sum/2, create/1, reverse_create/1, print/2, filter/2, naive_reverse/1, tail_reverse/1, concatenate/1, flatten/1]).
 -import(lists,[]).
 
 % Exercise 1
@@ -24,8 +24,12 @@ filter([], _) -> [];
 filter([H|T], N) when H =< N -> [H | filter(T,N)];
 filter([_|T], N) -> filter(T,N).
 
-reverse([]) -> [];
-reverse([H|T]) -> reverse(T) ++ [H].
+naive_reverse([]) -> [];
+naive_reverse([H|T]) -> naive_reverse(T) ++ [H].
+
+tail_reverse(L) -> tail_reverse(L, []).
+tail_reverse([], Acc) -> Acc;
+tail_reverse([H|T], Acc) -> tail_reverse(T, [H | Acc]).
 
 concatenate([]) -> [];
 concatenate([H|T]) -> H ++ concatenate(T).
