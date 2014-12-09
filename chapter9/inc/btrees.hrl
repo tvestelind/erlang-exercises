@@ -1,0 +1,1 @@
+-record(btree, {left = empty, right = empty, value=0}).
